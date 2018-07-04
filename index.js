@@ -12,7 +12,7 @@ const express = require('express');
 const app = express();
 
 if (!config.get('jwtPrivateKey')) {
-	console.log('FATAL ERROR: jwtPrivateKey is not defined.');
+	console.log('FATAL ERROR: vidly_jwtPrivateKey is not defined.');
 	process.exit(1);
 }
 
