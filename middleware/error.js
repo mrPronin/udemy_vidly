@@ -1,4 +1,4 @@
-const winston = require('winston');
+const logger = require('../startup/logging').logger;
 
 /* eslint-disable no-unused-vars */
 
@@ -12,7 +12,7 @@ module.exports = function(err, req, res, next) {
 	// debug
 	// silly
 
-	winston.log({
+	logger.log({
 		level: 'error', 
 		message: err.message,
 		meta: err

@@ -1,7 +1,7 @@
-const winston = require('winston');
+const logger = require('./logging').logger;
 const mongoose = require('mongoose');
 
 module.exports = function() {
 	mongoose.connect('mongodb://localhost/vidly')
-		.then(() => winston.info('Connected to MongoDB...'));
+		.then(() => logger.info('Connected to MongoDB...'));
 };
