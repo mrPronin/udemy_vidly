@@ -33,9 +33,10 @@ process.on('uncaughtException', (ex) => {
 	*/
 	});
 
-// Unhandled promise rejection
-// const p = Promise.reject(new Error('Something failed miserably!'));
-// p.then(() => console.log('Done'));
+	// Unhandled promise rejection
+	// const p = Promise.reject(new Error('Something failed miserably!'));
+	// p.then(() => console.log('Done'));
 
-// throw new Error('Something failed during startup.');
+	// throw new Error('Something failed during startup.');
+	return winston;
 };
