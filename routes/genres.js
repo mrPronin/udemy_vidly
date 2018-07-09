@@ -1,3 +1,4 @@
+const validateObjectId = require('../middleware/validsteObjectId');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Genre, validate} = require('../models/genre');
@@ -5,7 +6,7 @@ const express = require('express');
 const router = express.Router();
  
 router.get('/', async (req, res) => {
-	throw new Error('Could not get the genres.');
+	// throw new Error('Could not get the genres.');
 	const genres = await Genre.find().sort('name');
 	res.send(genres);
 });
@@ -40,7 +41,7 @@ router.delete('/:id', [auth, admin], async (req, res) => {
 	res.send(genre);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
 	const genre = await Genre.findById(req.params.id);
 
 	if (!genre) return res.status(404).send('The genre with the given ID not found');

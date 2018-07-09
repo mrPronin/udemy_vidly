@@ -2,6 +2,7 @@ const {User} = require('../../../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const mongoose = require('mongoose');
+/* eslint-disable no-undef */
 
 describe('user.generateAuthToken', () => {
 	it('should return a valid JWT', () => {
@@ -12,3 +13,5 @@ describe('user.generateAuthToken', () => {
 		expect(decoded).toMatchObject(payload);
 	});
 });
+
+/* eslint-enable no-undef */
