@@ -11,8 +11,8 @@ describe('/api/returns', () => {
 	let movieId;
 	let rental;
 
-	const exec = async () => {
-		return await request(server)
+	const exec = () => {
+		return request(server)
 			.post('/api/returns')
 			.set('x-auth-token', token)
 			.send({ customerId, movieId });
