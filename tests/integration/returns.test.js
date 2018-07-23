@@ -1,6 +1,7 @@
 const {Rental} = require('../../models/rental');
 const mongoose = require('mongoose');
 const request = require('supertest');
+const {User} = require('../../models/user');
 
 /* eslint-disable no-undef */
 describe('/api/returns', () => {
@@ -22,6 +23,7 @@ describe('/api/returns', () => {
         
 		customerId = mongoose.Types.ObjectId();
 		movieId = mongoose.Types.ObjectId();
+		token = new User().generateAuthToken();
 
 		rental = new Rental({
 			customer: {
@@ -38,8 +40,8 @@ describe('/api/returns', () => {
 		await rental.save();
 	});
 	afterEach(async () => { 
-		await server.close();
 		await Rental.remove({});
+		await server.close();
 	});
 
 	it('should return 401 if client is not logged in', async () => {
@@ -47,6 +49,20 @@ describe('/api/returns', () => {
 		const res = await exec();
 
 		expect(res.status).toBe(401);
+	});
+
+	it('should return 400 if customerId is not provided', async () => {
+		customerId = '';
+		const res = await exec();
+
+		expect(res.status).toBe(400);
+	});
+
+	it('should return 400 if movieId is not provided', async () => {
+		movieId = '';
+		const res = await exec();
+
+		expect(res.status).toBe(400);
 	});
 });
 /* eslint-enable no-undef */
